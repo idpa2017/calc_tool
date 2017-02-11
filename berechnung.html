@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Berechnung</title>
+
+    <meta charset="ISO-8859-1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    
+    <script type="text/javascript">
+    function calculate()
+    {
+    	var wert = document.getElementById('wert').value;
+    	var mballon = parseFloat(document.getElementById('mballon').value);
+    	var r = parseFloat(document.getElementById('r').value);
+    	var manhang = parseFloat(document.getElementById('manhang').value);
+    	var h = parseFloat(document.getElementById('h').value);
+    	var t = parseFloat(document.getElementById('t').value);
+    	var roha = parseFloat(document.getElementById('roha').value);
+    	var temp = parseFloat(document.getElementById('t').value);
+    	var pa = parseFloat(document.getElementById('pa').value);
+    	var rohi = parseFloat(document.getElementById('rohi').value);
+    	var deltat = parseFloat(document.getElementById('deltat').value);
+    	var g = 9.81
+    	
+    	switch(wert)
+    	{
+    		case "time":
+    			try
+    			{
+    				t = Math.sqrt((6 * (manhang + mballon) * h) / ((roha - rohi) * 4 * Math.PI * r * r * r * g));
+    			}
+    			catch(err)
+    			{
+    				console.log(err);
+    			}
+    			document.getElementById('t').value = t;
+    			console.log(t);
+    			break;
+    	}
+    }
+    </script>
+</head>
+
+<body>
+<table>
+    <tr>
+        <td>Masse Ballon (kg)</td>
+        <td><input type="text" id="mballon" /></td>
+    </tr>
+    <tr>
+        <td>Radius Ballon (m)</td>
+        <td><input type="text" id="r" /></td>
+    </tr>
+    <tr>
+        <td>Masse Anhang (kg)</td>
+        <td><input type="text" id="manhang" /></td>
+    </tr>
+    <tr>
+        <td>H&ouml;he (m)</td>
+        <td><input type="text" id="h" /></td>
+    </tr>
+    <tr>
+        <td>Zeit f&uuml;r Steigflug (s)</td>
+        <td><input type="text" id="t" /></td>
+    </tr>
+    <tr>
+        <td>Dichte aussen</td>
+        <td><select id="roha"><option value="1.292">Luft (1.292)</option></select></td>
+    </tr>
+    <tr>
+        <td>Temperatur aussen</td>
+        <td><input type="text" id="temp" /></td>
+    </tr>
+    <tr>
+        <td>Luftdruck aussen</td>
+        <td><input type="text" id="pa" /></select></td>
+    </tr>
+    <tr>
+        <td>Dichte innen</td>
+        <td><select id="rohi"><option value="0.1785">Helium (0.1785)</option><option value="0.0899">Wasserstoff (0.0899)</option></select></td>
+    </tr>
+    <tr>
+        <td>Temperatur&auml;nderung</td>
+        <td><input type="text" id="deltat" /></td>
+    </tr>
+    <tr>
+    	<td>Berechneter Wert</td>
+    	<td><select id="wert"><option value="time">Zeit</option></select></td>
+    </tr>
+    <tr>
+    	<td>&nbsp;</td>
+    	<td><input type="submit" id="submit" onclick="javascript:calculate();"></td>
+    </tr>
+</table>
+</body>
+</html>
